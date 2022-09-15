@@ -57,6 +57,9 @@ class MyGame(arcade.Window):
     def __init__(self):
         super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
 
+        # Sprite list with all the cards, no matter what pile they are in.
+        self.card_list = None
+
         arcade.set_background_color(arcade.color.AMAZON)
 
     def setup(self):
