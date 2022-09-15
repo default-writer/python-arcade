@@ -35,6 +35,22 @@ START_X = MAT_WIDTH / 2 + MAT_WIDTH * HORIZONTAL_MARGIN_PERCENT
 CARD_VALUES = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
 CARD_SUITS = ["Clubs", "Hearts", "Spades", "Diamonds"]
 
+class Card(arcade.Sprite):
+    """ Card sprite """
+
+    def __init__(self, suit, value, scale=1):
+        """ Card constructor """
+
+        # Attributes for suit and value
+        self.suit = suit
+        self.value = value
+
+        # Image to use for the sprite when face up
+        self.image_file_name = f":resources:images/cards/card{self.suit}{self.value}.png"
+
+        # Call the parent
+        super().__init__(self.image_file_name, scale, hit_box_algorithm="None")
+
 class MyGame(arcade.Window):
     """ Main application class. """
 
