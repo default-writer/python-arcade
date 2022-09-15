@@ -1,68 +1,51 @@
-import sys
-import os
-import random
+"""
+Solitaire clone.
+"""
+import arcade
 
-from PySide6 import QtCore, QtWidgets, QtGui
-
-from PySide6.QtCore import *
-from PySide6.QtWidgets import *
-
-_placeholder =  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fermentum nisl est, eu cursus mi bibendum sit amet. Nullam nisl metus, pharetra ac elit et, mattis eleifend dolor. In tempor leo eu justo tincidunt tristique. Donec id maximus nulla, sed suscipit ante. Sed facilisis fringilla enim, a pharetra nisi. Etiam auctor maximus ullamcorper. Nam sollicitudin gravida lectus, et lacinia nulla tristique sit amet. In laoreet porttitor leo sed laoreet. In arcu erat, faucibus sit amet posuere bibendum, dignissim at ante."
-
-class Widget(QWidget):
-    def __init__(self, parent=None):
-        super(Widget, self).__init__(parent)
-
-        menu_widget = QListWidget()
-        for i in range(10):
-            item = QListWidgetItem(f"Item {i}")
-            item.setTextAlignment(Qt.AlignCenter)
-            menu_widget.addItem(item)
-
-        text_widget = QLabel(_placeholder)
-        text_widget.setWordWrap(True)
-        text_widget.setAlignment(Qt.AlignCenter)
-        button = QPushButton("Something")
-
-        content_layout = QVBoxLayout()
-        content_layout.addWidget(text_widget)
-        content_layout.addWidget(button)
-        main_widget = QWidget()
-        main_widget.setLayout(content_layout)
-
-        layout = QHBoxLayout()
-        layout.addWidget(menu_widget, 1)
-        layout.addWidget(main_widget, 4)
-        self.setLayout(layout)
+# Screen title and size
+SCREEN_WIDTH = 1024
+SCREEN_HEIGHT = 768
+SCREEN_TITLE = "Drag and Drop Cards"
 
 
-        self.hello = ["Hallo Welt", "Hei maailma", "Hola Mundo", "Привет мир"]
+class MyGame(arcade.Window):
+    """ Main application class. """
 
-        self.button = QtWidgets.QPushButton("Click me!")
-        self.text = QtWidgets.QLabel("Hello World",
-                                     alignment=QtCore.Qt.AlignCenter)
+    def __init__(self):
+        super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
 
-        self.layout = QtWidgets.QVBoxLayout(self)
-        self.layout.addWidget(self.text)
-        self.layout.addWidget(self.button)
+        arcade.set_background_color(arcade.color.AMAZON)
 
-        self.button.clicked.connect(self.magic)
+    def setup(self):
+        """ Set up the game here. Call this function to restart the game. """
+        pass
 
-    @QtCore.Slot()
-    def magic(self):
-        self.text.setText(random.choice(self.hello))
+    def on_draw(self):
+        """ Render the screen. """
+        # Clear the screen
+        self.clear()
+
+    def on_mouse_press(self, x, y, button, key_modifiers):
+        """ Called when the user presses a mouse button. """
+        pass
+
+    def on_mouse_release(self, x: float, y: float, button: int,
+                         modifiers: int):
+        """ Called when the user presses a mouse button. """
+        pass
+
+    def on_mouse_motion(self, x: float, y: float, dx: float, dy: float):
+        """ User moves mouse """
+        pass
+
+
+def main():
+    """ Main function """
+    window = MyGame()
+    window.setup()
+    arcade.run()
+
 
 if __name__ == "__main__":
-    app = QApplication()
-
-    w = Widget()
-    w.setWindowTitle("Hello, world!")
-
-    with open(os.path.dirname(os.path.abspath(__file__)) + os.path.sep + "style.qss", "r") as f:
-        _style = f.read()
-        app.setStyleSheet(_style)
-
-    w.resize(800, 600)
-    w.show()
-
-    sys.exit(app.exec())
+    main()
