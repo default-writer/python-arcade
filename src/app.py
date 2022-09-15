@@ -64,7 +64,15 @@ class MyGame(arcade.Window):
 
     def setup(self):
         """ Set up the game here. Call this function to restart the game. """
-        pass
+        # Sprite list with all the cards, no matter what pile they are in.
+        self.card_list = arcade.SpriteList()
+
+        # Create every card
+        for card_suit in CARD_SUITS:
+            for card_value in CARD_VALUES:
+                card = Card(card_suit, card_value, CARD_SCALE)
+                card.position = START_X, BOTTOM_Y
+                self.card_list.append(card)
 
     def on_draw(self):
         """ Render the screen. """
